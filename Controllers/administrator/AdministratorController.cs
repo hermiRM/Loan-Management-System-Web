@@ -6,19 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using LoanManagementSystem.Helpers;
-using LoanManagementSystem.Models;
-
 
 namespace LoanManagementSystem.Controllers.administrator
 {
     public class AdministratorController : Controller
     {
-        private readonly LoanManagementContext _context;
-
-        public AdministratorController(LoanManagementContext context)
-        {
-            _context = context;
-        }
         public IActionResult Index()
         {
             return View();
@@ -50,8 +42,7 @@ namespace LoanManagementSystem.Controllers.administrator
         }
         public IActionResult Users()
         {
-            ViewBag.UsersActive = "active";
-            return RedirectToAction( actionName: "Index", controllerName:"Users");
+            return View();
         }
         public RedirectToActionResult Logout()
         {

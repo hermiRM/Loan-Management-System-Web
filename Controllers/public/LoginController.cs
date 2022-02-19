@@ -49,12 +49,7 @@ namespace LoanManagementSystem.Controllers
 
                 UserAccount User = new UserAccount();
                 User = _context.Accounts.FirstOrDefault(e => e.User_Name == username);
-                if (User == null)
-                {
-                    TempData["AlertType"] = "danger";
-                    TempData["AlertMessage"] = "Incorrect Credential";
-                    return View(userAccount);
-                }
+
                 //FormsAuthentication.SetAuthCookie(User.Id,false);
                 if (encoder.Compare(password, User.User_Password))
                 {
@@ -73,12 +68,13 @@ namespace LoanManagementSystem.Controllers
 
                     if (isAdmin == 1)
                     {
-                        ViewBag.AdminHomeActive = "active";
                         return RedirectToAction(actionName: "Index", controllerName: "Administrator");
-                        
                     }
 
                     return RedirectToAction(actionName: "Index", controllerName: "Customer");
+
+
+
                 }
 
                 else
